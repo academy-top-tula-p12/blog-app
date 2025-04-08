@@ -14,14 +14,6 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            $table->string("title");
-            $table->string("cover");
-            $table->text("content");
-            $table->boolean("is_published");
-
-            $table->bigInteger("user_id");
-            $table->bigInteger("category_id");
         });
     }
 

@@ -22,10 +22,11 @@ class PostController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $posts = $user->posts();
+        $posts = $user->posts;
 
         return view("posts.index", [
             "posts" => $posts,
+            "user" => $user,
         ]);
     }
 
@@ -90,8 +91,8 @@ class PostController extends Controller
     public function show(string $id): View
     {
         $post = Post::find($id);
-        $category = $post->category();
-        $tags = $post->tags();
+        $category = $post->category;
+        $tags = $post->tags;
 
         return view("posts.show", [
             "post" => $post,
@@ -106,13 +107,14 @@ class PostController extends Controller
     public function edit(string $id): View
     {
         $post = Post::find($id);
-        $categories = Category::all()
-        $tags = Tags::all();
+        $categories = Category::all();
+        $tags = Tag::all();
 
         return view("posts.edit", [
             "post" => $post,
             "categories" => $categories,
             "tags" => $tags,
+            "user" => Auth::user(),
         ]);
     }
 
